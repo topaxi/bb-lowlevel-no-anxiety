@@ -1,2 +1,5 @@
 /node_modules
 /dist
+/cat-demo/Cargo.lock
+/cat-demo/pkg
+/cat-demo/target

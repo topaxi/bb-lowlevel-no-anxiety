@@ -1,13 +1,27 @@
 import Reveal from 'reveal.js';
 import Markdown from 'reveal.js/plugin/markdown/markdown.esm.js';
 import Highlight from 'reveal.js/plugin/highlight/highlight.esm.js';
+import initCatDemo, { run as runCatDemo } from '../cat-demo/pkg/cat_demo.js';
 
 const markdownFiles: Record<string, { default: string }> = import.meta.glob('../slides/*.md', {
   query: 'raw',
   eager: true,
 });
 
+declare global {
+  interface Window {
+    runCatDemo: () => Promise<void>;
+  }
+}
+
+const catDemoReady = initCatDemo();
+
 function main() {
+  window.runCatDemo = async () => {
+    await catDemoReady;
+    runCatDemo();
+  };
+
   initializeReveal();
 }
 

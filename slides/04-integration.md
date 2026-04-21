@@ -51,3 +51,5 @@ import { Cat } from "./cat";
 let winston = new Cat("Winston", 10);
 winston.greet();
 ```
+
+<a href="#" onclick="window.runCatDemo(); return false;">run</a>
