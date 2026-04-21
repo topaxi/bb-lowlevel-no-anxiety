@@ -1,0 +1,28 @@
+{
+  "name": "bb-lowlevel-no-anxiety",
+  "version": "1.0.0",
+  "description": "Rust - Low-Level Programming without the Anxiety",
+  "type": "module",
+  "sideEffects": [
+    "src/index.ts"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "author": "Damian Senn <damian.senn@ti8m.ch>",
+  "license": "ISC",
+  "browserslist": [
+    "last 2 firefox versions",
+    "last 2 chrome versions"
+  ],
+  "dependencies": {
+    "reveal.js": "^5.2.0"
+  },
+  "devDependencies": {
+    "@types/reveal.js": "^5.0.5",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.3"
+  }
+}

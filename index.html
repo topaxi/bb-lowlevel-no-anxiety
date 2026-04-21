@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Low-Level Programming without Anxiety</title>
+    <link rel="stylesheet" href="/node_modules/reveal.js/dist/reveal.css" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/reveal.js/dist/theme/black.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/node_modules/reveal.js/plugin/highlight/monokai.css"
+    />
+    <style>
+      * {
+        text-transform: none !important;
+      }
+
+      .reveal pre {
+        width: 98% !important;
+      }
+
+      [data-marker="✓"]::marker {
+        color: #a6e22e;
+      }
+      [data-marker="✕"]::marker {
+        color: #f92672;
+      }
+
+      li[data-marker] {
+        list-style-type: none;
+      }
+      li[data-marker]::marker {
+        content: attr(data-marker) " ";
+      }
+
+      .wave span {
+        display: inline-block;
+        color: transparent;
+      }
+
+      .wave.visible span {
+        animation: 0.8s wave var(--animation-start, 0s) ease forwards;
+      }
+
+      @keyframes wave {
+        0% {
+          color: transparent;
+          transform: translateY(0);
+        }
+        30% {
+          color: #ff4d4d;
+          transform: translateY(-4px);
+        }
+        60% {
+          color: #4da6ff;
+        }
+        100% {
+          color: white;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <script type="module" src="/src/index.ts"></script>
+  </body>
+</html>
