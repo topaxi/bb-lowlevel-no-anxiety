@@ -66,7 +66,6 @@ borrowed as immutable
 1. The Rust Ecosystem
 1. Integrating with Java or JavaScript
 1. How can we benefit from this?
-1. Conclusion and Recommendations
 1. Questions
 
 ---
