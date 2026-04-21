@@ -9,7 +9,9 @@
   "scripts": {
     "build:wasm": "wasm-pack build cat-demo --target web --out-dir pkg",
     "dev": "npm run build:wasm && vite",
+    "dev:prebuilt": "vite",
     "build": "npm run build:wasm && tsc && vite build",
+    "build:prebuilt": "tsc && vite build",
     "preview": "vite preview"
   },
   "author": "Damian Senn <damian.senn@ti8m.ch>",

@@ -20,7 +20,7 @@ Node.js addons in Rust
 
 ### wasm-bindgen Example
 
-```rust [|1-5|7-10|13-14|15-18|20-25]
+```rust [|1-5|7-11|13-14|15-18|20-25]
 #[wasm_bindgen]
 extern "C" {
     #[wasm_bindgen(js_namespace = window)]
@@ -50,11 +50,15 @@ impl Cat {
 ```
 
 ---
+<!-- .element: data-auto-animate="true" -->
 
 ### wasm-bindgen Example
 
 ```javascript
-import { Cat } from "./cat";
+import initCatDemo, { Cat } from "../cat-demo/pkg/cat_demo.js";
+
+// WASM modules need to be initialized before they can be used.
+await initCatDemo();
 
 // Use Cat class from Rust as if it were a regular JavaScript class.
 // Using TypeScript, these will also be fully typed.
@@ -62,4 +66,24 @@ let winston = new Cat("Winston", 10);
 winston.greet();
 ```
 
-<a href="#" onclick="event.preventDefault(); event.stopPropagation(); window.runCatDemo(); return false;">run</a>
+<a href="#" onclick="event.preventDefault(); event.stopPropagation(); window.runCatDemo(); return false;">▶️run</a>
+
+---
+
+## FFI (Foreign Function Interface)
+
+- Languages like C, C++, C#, Java, Python, and many others can call Rust code
+via FFI.
+- Some languages provide specific binding generators for Rust.
+  - C# - https://github.com/Cysharp/csbindgen
+  - Java - https://github.com/IronCoreLabs/uniffi-bindgen-java
+  - Python - https://github.com/PyO3/pyo3
+
+---
+
+## Or separate Rust projects!
+
+- As a Microservice for performance or latency critical use cases
+- As a Microservice to experiment with Rust without affecting the rest of a codebase
+- As a job worker for CPU intensive tasks
+- As CLI utilities, e.g. for data processing or automation tasks

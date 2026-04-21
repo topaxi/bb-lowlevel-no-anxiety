@@ -1,0 +1,15 @@
+{
+  "name": "cat-demo",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "cat_demo_bg.wasm",
+    "cat_demo.js",
+    "cat_demo.d.ts"
+  ],
+  "main": "cat_demo.js",
+  "types": "cat_demo.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
