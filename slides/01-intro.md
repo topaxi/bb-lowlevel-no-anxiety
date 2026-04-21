@@ -44,7 +44,7 @@ fn main() {
 
 ### Low-Level can be fun without anxiety!
 
-```
+```txt [|1-3|5-6|7-8|9-10]
 error[E0502]: cannot borrow `xs` as mutable because it is also
 borrowed as immutable
  --> src/main.rs:4:3

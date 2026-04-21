@@ -33,9 +33,9 @@ a runtime.
 ### Errors Rust Prevents
 ##### (at Compile Time)
 
-- **Memory Safety**<br>
+- <!-- .element: class="fragment" --><strong>Memory Safety</strong><br>
   Use-after-free, double free, dangling pointers, null pointer dereference
-- **Aliasing & Mutability**<br>
+- <!-- .element: class="fragment" --><strong>Aliasing & Mutability</strong><br>
   Data races, concurrent modification, mutable aliasing, iterator invalidation
 
 ---
@@ -44,9 +44,9 @@ a runtime.
 ### Errors Rust Prevents
 ##### (at Compile Time)
 
-- **Initialization & State Correctness**<br>
+- <strong>Initialization & State Correctness</strong><br>
   Uninitialized and partially initialized variables, invalid enum states
-- **Type & API Misuse**<br>
+- <!-- .element: class="fragment" --><strong>Type & API Misuse</strong><br>
   Type coercions, implicit conversions, nulls, unhandled errors
 
 ---
@@ -58,9 +58,9 @@ a runtime.
 - **Resource Management**<br>
   `Drop` trait to implement RAII guarantees cleanup of resources (files,
   network connections, etc.)
-- **Mismatched allocation/deallocation**<br>
+- <!-- .element: class="fragment" --><strong>Mismatched allocation/deallocation</strong><br>
   No mixing of memory allocators, no manual memory management
-- **Concurrency Correctness**<br>
+- <!-- .element: class="fragment" --><strong>Concurrency Correctness</strong><br>
   No non-thread-safe sharing, types must implement `Send` / `Sync` traits to cross threads.
 
 ---
@@ -70,7 +70,7 @@ a runtime.
 - Very strong type system
   - Generics, traits, lifetimes
   - Algebraic data types (enums, structs)
-  - No NULL <span class="fragment">😍</span>
+  - No NULL <span class="fragment wave"><span>😍</span></span>
 - Ownership and borrowing
 - Zero-cost abstractions
 - Pattern matching
@@ -105,15 +105,17 @@ fn main() {
 
 ### Example Rust Code
 
-```
+```txt [|1-2|4-11|13-14]
 error[E0106]: missing lifetime specifier
  --> src/main.rs:6:32
   |
 6 | fn oldest(x: &Cat, y: &Cat) -> &Cat {
-  |              ----     ----     ^ expected named lifetime parameter
+  |              ----     ----     ^ expected named lifetime
+  |                                  parameter
   |
   = help: this function's return type contains a borrowed value,
-but the signature does not say whether it is borrowed from `x` or `y`
+but the signature does not say whether it is borrowed from `x`
+or `y`
 help: consider introducing a named lifetime parameter
   |
 6 | fn oldest<'a>(x: &'a Cat, y: &'a Cat) -> &'a Cat {
@@ -127,7 +129,7 @@ For more information about this error, try `rustc --explain E0106`.
 
 ### Example Rust Code
 
-```rust [6|]
+```rust [6]
 struct Cat {
     name: String,
     age: u32,
@@ -146,7 +148,7 @@ fn main() {
 }
 ```
 
-```
+```txt
 Winston is older
 ```
 <!-- .element: class="fragment fade-down" -->
@@ -160,9 +162,8 @@ Winston is older
 <!-- .element: class="fragment fade-down" style="font-size: 4rem; color: red;" -->
 
 ---
-<!-- .element: data-auto-animate="true" -->
 
-### But I like dogs too! I need inheritance and polymorphism!
+### Enums and trait objects to the rescue!
 
 ```rust [|6-10|12-15|17|18-24|26-31|34-36|38-48|50-56]
 struct Cat {
@@ -227,8 +228,8 @@ fn main() {
 
 ## Why aren't we using Rust for everything?
 
-- Steep learning curve
-- Less mature ecosystem compared to Java/C#/JavaScript/Python
-- Slower compilation times
-- Knowledge gap in the industry
-- Other high level languages are good enough for many use cases
+- Steep learning curve <!-- .element: class="fragment fade-down" -->
+- Less mature ecosystem compared to Java/C#/JavaScript/Python <!-- .element: class="fragment fade-down" -->
+- Slower compilation times <!-- .element: class="fragment fade-down" -->
+- Knowledge gap in the industry <!-- .element: class="fragment fade-down" -->
+- Other high level languages are good enough for many use cases <!-- .element: class="fragment fade-down" -->
