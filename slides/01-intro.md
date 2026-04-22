@@ -72,7 +72,7 @@ borrowed as immutable
 
 ## Who am I?
 
-- Started two years ago
+- At TI&M for about two years
 - Mostly Frontend Engineer
 - Currently working for TWINT
 - Pet Dad of a dog and two cats

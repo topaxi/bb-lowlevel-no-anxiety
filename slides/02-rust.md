@@ -243,10 +243,11 @@ fn main() {
 - Conversion of other values through `Into` and `From` traits
 
 ---
+<!-- .element: data-auto-animate="true" -->
 
 ### Type conversions
 
-```rust [1-12|14-18|20-24|26-32]
+```rust [1-12|14-18|20-24|26-35]
 #[derive(Default, Debug)]
 struct Cat {
   name: String,
@@ -274,7 +275,26 @@ impl From<Cat> for Dog {
 
 pub fn main() {
     let upsi_cat = Cat { name: String::from("Upsi"), age: 4 };
+    // Necessary type annotation, so that the compiler knows
+    // which From implementation to use. Types influence
+    // compiler output!
     let upsi_dog: Dog = upsi_cat.into();
+
+    println!("{:?}", upsi_dog);
+    //-> Dog { name: "Upsi", age: 4, is_barky: false }
+}
+```
+
+---
+<!-- .element: data-auto-animate="true" -->
+
+### Type conversions
+
+```rust
+pub fn main() {
+    let upsi_cat = Cat { name: String::from("Upsi"), age: 4 };
+    // Alternative version, use `from` directly.
+    let upsi_dog = Dog::from(upsi_cat);
 
     println!("{:?}", upsi_dog);
     //-> Dog { name: "Upsi", age: 4, is_barky: false }
