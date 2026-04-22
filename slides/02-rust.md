@@ -28,6 +28,16 @@ a runtime.
 - Thread safety
 
 ---
+
+### Why do we not want a<br>Garbage Collector?
+
+- Can slow down execution time of code
+- Can increase latency
+- Cause unpredictable pauses in code execution
+- Often more wasteful in memory usage
+  - And memory got more expensive thanks to AI <!-- .element: class="fragment fade-down" -->
+
+---
 <!-- .element: data-auto-animate="true" -->
 
 ### Errors Rust Prevents
@@ -70,7 +80,7 @@ a runtime.
 - Very strong type system
   - Generics, traits, lifetimes
   - Algebraic data types (enums, structs)
-  - No NULL <span class="fragment wave"><span>😍</span></span>
+  - No `NULL` <span class="fragment wave"><span>😍</span></span>
 - Ownership and borrowing
 - Zero-cost abstractions
 - Pattern matching
@@ -163,7 +173,7 @@ Winston is older
 
 ---
 
-### Enums and trait objects to the rescue!
+### Enums and traits to the rescue!
 
 ```rust [|6-10|12-15|17|18-24|26-31|34-36|38-48|50-56]
 struct Cat {
@@ -209,8 +219,8 @@ fn oldest<'a>(x: &'a Pet, y: &'a Pet) -> &'a Pet {
 impl std::fmt::Display for Pet {
   fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
     match self {
-      Pet::Cat(cat) => write!(f, "🐶 {}", cat.name),
-      Pet::Dog(dog) => write!(f, "😸 {}", dog.name),
+      Pet::Cat(cat) => write!(f, "😸 {}", cat.name),
+      Pet::Dog(dog) => write!(f, "🐶 {}", dog.name),
     }
   }
 }
@@ -220,7 +230,54 @@ fn main() {
     let b = Pet::new_dog(String::from("Upsi"), 4, false);
 
     println!("{} is older", oldest(&a, &b));
-    // 🐶 Winston is older
+    // 😸 Winston is older
+}
+```
+
+---
+<!-- .element: data-auto-animate="true" -->
+
+### Type conversions
+
+- Type casts via `as` for numeric values and pointers only
+- Conversion of other values through `Into` and `From` traits
+
+---
+
+### Type conversions
+
+```rust [1-12|14-18|20-24|26-32]
+#[derive(Default, Debug)]
+struct Cat {
+  name: String,
+  age: u32,
+}
+
+#[derive(Default, Debug)]
+struct Dog {
+  name: String,
+  age: u32,
+  is_barky: bool,
+}
+
+impl From<Dog> for Cat {
+  fn from(dog: Dog) -> Cat {
+    Cat { name: dog.name, age: dog.age }
+  }
+}
+
+impl From<Cat> for Dog {
+  fn from(cat: Cat) -> Dog {
+    Dog { name: cat.name, age: cat.age, ..Default::default() }
+  }
+}
+
+pub fn main() {
+    let upsi_cat = Cat { name: String::from("Upsi"), age: 4 };
+    let upsi_dog: Dog = upsi_cat.into();
+
+    println!("{:?}", upsi_dog);
+    //-> Dog { name: "Upsi", age: 4, is_barky: false }
 }
 ```
 
