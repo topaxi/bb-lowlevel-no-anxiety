@@ -2,6 +2,7 @@
 ### with other languages
 
 ---
+<!-- .element: data-auto-animate="true" -->
 
 ### JavaScript / WASM
 
@@ -86,4 +87,4 @@ via FFI.
 - As a Microservice for performance or latency critical use cases
 - As a Microservice to experiment with Rust without affecting the rest of a codebase
 - As a job worker for CPU intensive tasks
-- As CLI utilities, e.g. for data processing or automation tasks
+- As CLI utilities for data processing or automation tasks

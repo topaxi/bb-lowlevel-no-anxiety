@@ -77,3 +77,13 @@ borrowed as immutable
 - Currently working for TWINT
 - Pet Dad of a dog and two cats
 - Please ask questions right away or at the end of the presentation :)
+
+---
+
+## What is Low-Level Programming?
+
+- **High-level** languages (Java, Python, JavaScript) manage memory automatically
+  - Easier to write, but less control and usually slower
+- **Low-level** languages (C, C++, Rust, Assembly) give you direct control over memory and hardware
+  - Faster and more efficient, but traditionally harder to write safely
+- Think of it like driving: **high-level is automatic**, **low-level is manual**

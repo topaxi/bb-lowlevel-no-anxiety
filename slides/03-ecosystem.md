@@ -1,6 +1,36 @@
 # The Ecosystem
 
 ---
+<!-- .element: data-auto-animate="true" -->
+
+### Rust in Production
+
+- **Mozilla** - where Rust was born. Used in Firefox's rendering engine
+- **AWS** - Firecracker microVMs powering Lambda and Fargate
+- **Microsoft** - Windows kernel components, Azure services
+- **Google** - Chromium browser, Android OS codebase
+
+---
+<!-- .element: data-auto-animate="true" -->
+
+### Rust in Production
+
+- **Cloudflare** - edge proxy services
+- **Discord** - switched from Go, dramatically reducing latency spikes
+- **Linux Kernel** - first new language supported alongside C (since 6.1)
+
+---
+
+### Internationalization APIs
+
+- Some Browser APIs are being implemented in Rust for performance and security reasons.
+  - [icu4x](https://github.com/unicode-org/icu4x), provides internationalization support for Rust and WebAssembly.
+    - Used by Firefox to build their internationalization features
+  - [temporal_rs](https://github.com/boa-dev/temporal), the JavaScript Temporal date/time API.
+    - Builds on top of icu4x
+    - Used by Boa, Kiesel, V8 (Chrome, Node.js, Deno), Yavashark
+
+---
 
 ### HTTP Frameworks
 

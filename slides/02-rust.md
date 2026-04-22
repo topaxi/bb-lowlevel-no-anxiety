@@ -5,6 +5,7 @@
 concurrency.
 - Rust compiles to native code and does not have a garbage collector nor
 a runtime.
+- Procedural and functional programming styles are both supported
 - <!-- .element: class="fragment wave" --><span>And</span> <span style="--animation-start: 0.1s">your</span> <span style="--animation-start: 0.2s">future</span> <span style="--animation-start: 0.3s">favorite</span> <span style="--animation-start: 0.4s">language</span>
 
 ---
@@ -29,13 +30,35 @@ a runtime.
 
 ---
 
+### What is Garbage Collection?
+
+- The programming language automatically allocates and tracks memory for you.
+- As memory fills up the following happens: <!-- .element: class="fragment fade-down" -->
+  1. Program execution is paused <!-- .element: class="fragment fade-down" -->
+  1.   The runtime marks which memory is still in use <!-- .element: class="fragment fade-down" -->
+  1.   The runtime then frees up memory that is no longer in use <!-- .element: class="fragment fade-down" -->
+  1.   Execution resumes <!-- .element: class="fragment fade-down" -->
+
+---
+
 ### Why do we not want a<br>Garbage Collector?
 
-- Can slow down execution time of code
-- Can increase latency
-- Cause unpredictable pauses in code execution
-- Often more wasteful in memory usage
-  - And memory got more expensive thanks to AI <!-- .element: class="fragment fade-down" -->
+- Can slow down execution time of code <!-- .element: class="fragment fade-down" -->
+- Can increase latency <!-- .element: class="fragment fade-down" -->
+- Cause unpredictable pauses in code execution <!-- .element: class="fragment fade-down" -->
+  - Like a cleaner that sweeps up unpredictably, interrupting your work <!-- .element: class="fragment fade-down" -->
+- Often more wasteful in memory usage <!-- .element: class="fragment fade-down" -->
+  - And memory got more expensive thanks to AI
+
+---
+
+### Ownership & Borrowing
+
+- <!-- .element: class="fragment" --> <strong>Ownership</strong> - each value has exactly one owner, when the owner goes out of scope, the value is freed automatically
+- <!-- .element: class="fragment" --> <strong>Borrowing</strong> - values can be borrowed as a reference <code>&T</code> without taking ownership, but:
+  - Many immutable borrows **or** one mutable borrow, but never both at the same time
+  - A borrow can never outlive its owner
+- <!-- .element: class="fragment" --> This is how Rust catches data races, use-after-free, and iterator invalidation <strong>at compile time</strong> — no runtime cost
 
 ---
 <!-- .element: data-auto-animate="true" -->
@@ -75,13 +98,12 @@ a runtime.
 
 ---
 
-## What are key features of Rust?
+## What are other key features of Rust?
 
 - Very strong type system
   - Generics, traits, lifetimes
   - Algebraic data types (enums, structs)
   - No `NULL` <span class="fragment wave"><span>😍</span></span>
-- Ownership and borrowing
 - Zero-cost abstractions
 - Pattern matching
 - Hygienic and procedural macros
@@ -215,7 +237,7 @@ fn oldest<'a>(x: &'a Pet, y: &'a Pet) -> &'a Pet {
 
 // implementing the Display trait allows us to print our Pet
 // using the {} format specifier as well as using `to_string()`
-// to convert it to a String
+// to convert it to a String. Similar to an interface.
 impl std::fmt::Display for Pet {
   fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
     match self {
